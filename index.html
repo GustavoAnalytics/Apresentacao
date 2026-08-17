@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071827" />
+  <meta name="description" content="Portfólio executivo de Gustavo Farias — Transformação Operacional, Dados, Sistemas, BI e Automação." />
+  <title>Gustavo Farias | Portfólio Executivo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Ir para o início">
+      <span class="brand-mark">GF</span>
+      <span class="brand-copy">
+        <strong>Gustavo Farias</strong>
+        <small>Transformação Operacional & Dados</small>
+      </span>
+    </a>
+
+    <div class="top-actions">
+      <button class="ghost-btn" id="printBtn" type="button">Exportar / Imprimir</button>
+      <a class="primary-btn compact" href="#contato">Falar sobre um projeto</a>
+    </div>
+  </header>
+
+  <aside class="rail" aria-label="Navegação da apresentação">
+    <div class="rail-progress"><span id="railProgress"></span></div>
+    <nav id="slideNav" class="slide-nav"></nav>
+  </aside>
+
+  <main>
+    <section class="slide hero" id="inicio" data-label="Início">
+      <div class="slide-inner hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> PORTFÓLIO EXECUTIVO</div>
+          <h1>Sua empresa tem dados.<br><em>Mas consegue decidir com eles?</em></h1>
+          <p class="hero-lead">
+            Eu organizo <strong>processos, sistemas e dados</strong> para transformar informação dispersa em gestão,
+            previsibilidade e decisões mais seguras.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-btn" href="#problema">Ver onde as empresas perdem eficiência</a>
+            <a class="text-link" href="#profissional">Conheça o profissional <span>→</span></a>
+          </div>
+
+          <div class="hero-proof">
+            <div><strong class="counter" data-target="8">0</strong><span>anos em tecnologia</span></div>
+            <div><strong>Dados + Negócio</strong><span>visão técnica e operacional</span></div>
+            <div><strong>Construção + Logística</strong><span>conhecimento de processos reais</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal delay-1">
+          <div class="photo-frame">
+            <img src="assets/gustavo-farias-hero.png" alt="Gustavo Farias" id="profilePhoto" />
+            <div class="photo-fallback" id="photoFallback" aria-hidden="true">
+              <div class="monogram">GF</div>
+              <small>Gustavo Farias</small>
+            </div>
+            <div class="photo-overlay"></div>
+            <div class="floating-chip chip-1">Processos</div>
+            <div class="floating-chip chip-2">Dados</div>
+            <div class="floating-chip chip-3">Sistemas</div>
+            <div class="floating-chip chip-4">Decisão</div>
+          </div>
+          <div class="hero-card">
+            <span class="pulse"></span>
+            <div>
+              <small>POSICIONAMENTO</small>
+              <strong>Tecnologia aplicada à realidade da operação.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">Role para explorar <span>↓</span></div>
+    </section>
+
+    <section class="slide dark" id="problema" data-label="O problema">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow light"><span></span> O PROBLEMA NÃO É FALTA DE SISTEMA</div>
+          <h2>O custo invisível aparece quando a empresa cresce sem integrar <em>processos, dados e tecnologia.</em></h2>
+          <p>Os sinais parecem pequenos isoladamente. Juntos, viram desperdício, risco e lentidão na gestão.</p>
+        </div>
+
+        <div class="pain-grid reveal delay-1">
+          <article class="pain-card">
+            <span class="pain-number">01</span>
+            <h3>Planilhas viram “sistema oficial”</h3>
+            <p>A informação passa a depender de arquivos paralelos e conhecimento individual.</p>
+          </article>
+          <article class="pain-card">
+            <span class="pain-number">02</span>
+            <h3>O mesmo dado é digitado várias vezes</h3>
+            <p>ERP, CRM, WMS e controles paralelos não conversam — e o retrabalho cresce.</p>
+          </article>
+          <article class="pain-card">
+            <span class="pain-number">03</span>
+            <h3>A diretoria descobre o desvio tarde</h3>
+            <p>Indicadores chegam depois do problema, quando a capacidade de reação já diminuiu.</p>
+          </article>
+          <article class="pain-card">
+            <span class="pain-number">04</span>
+            <h3>Mais gente não resolve o gargalo</h3>
+            <p>Contratar para sustentar processo ruim aumenta custo sem corrigir a causa.</p>
+          </article>
+          <article class="pain-card accent-card">
+            <span class="pain-number">05</span>
+            <h3>O sistema existe. A operação continua fora dele.</h3>
+            <p>Quando o processo real não está refletido no sistema, a tecnologia perde valor.</p>
+          </article>
+        </div>
+
+        <div class="trigger-line reveal delay-2">
+          <span class="dot"></span>
+          <strong>Se a gestão depende de perguntar “quem tem a planilha certa?”, o problema já deixou de ser técnico.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="profissional" data-label="Profissional">
+      <div class="slide-inner professional-grid">
+        <div class="portrait-panel reveal">
+          <div class="portrait-shell">
+            <img src="assets/gustavo-farias-profile.png" alt="Retrato profissional de Gustavo Farias" class="secondaryPhoto" />
+            <div class="portrait-fallback secondaryFallback">GF</div>
+          </div>
+          <div class="signature-card">
+            <span>Gustavo Farias</span>
+            <small>Transformação Operacional • Dados • Sistemas</small>
+          </div>
+        </div>
+
+        <div class="professional-copy reveal delay-1">
+          <div class="eyebrow"><span></span> QUEM ESTÁ POR TRÁS DAS SOLUÇÕES</div>
+          <h2>Um profissional que consegue conversar com <em>a diretoria, a operação e a tecnologia.</em></h2>
+          <p class="lead-text">
+            Profissional de tecnologia com <strong>8 anos de experiência</strong> e atuação prática em Engenharia de Dados,
+            Data Lake, Data Warehouse, Business Intelligence, automação e estruturação de sistemas corporativos.
+          </p>
+          <p>
+            O diferencial está na combinação entre domínio técnico e conhecimento de negócio em
+            <strong>construção civil, incorporação e logística</strong>. Isso permite entender não apenas o sistema,
+            mas o impacto que uma informação incorreta, atrasada ou fragmentada causa na operação.
+          </p>
+
+          <div class="skill-ribbon">
+            <span>Python</span><span>SQL</span><span>Power BI</span><span>Airflow</span><span>Docker</span><span>GitHub</span><span>APIs</span><span>Excel</span>
+          </div>
+
+          <blockquote>
+            “Eu não começo perguntando qual tecnologia a empresa precisa. Primeiro entendo qual problema precisa ser resolvido.”
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide soft" id="proposta" data-label="Proposta de valor">
+      <div class="slide-inner">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow"><span></span> PROPOSTA DE VALOR</div>
+          <h2>Transformar complexidade operacional em <em>clareza para decidir.</em></h2>
+        </div>
+
+        <div class="value-flow reveal delay-1">
+          <div class="value-node"><span>01</span><strong>Entender</strong><small>a operação real</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="value-node"><span>02</span><strong>Organizar</strong><small>processos e dados</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="value-node"><span>03</span><strong>Conectar</strong><small>sistemas e fontes</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="value-node"><span>04</span><strong>Automatizar</strong><small>rotinas repetitivas</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="value-node active"><span>05</span><strong>Gerir</strong><small>com indicadores</small></div>
+        </div>
+
+        <div class="value-statement reveal delay-2">
+          <strong>O objetivo não é entregar “mais um dashboard”.</strong>
+          <p>É construir uma estrutura em que a informação chegue com qualidade, contexto e utilidade para quem precisa decidir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="arquitetura" data-label="Dados e integração">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> ENGENHARIA DE DADOS SEM TECNIQUÊS</div>
+          <h2>Dos sistemas da empresa até a decisão: <em>um caminho organizado e automatizado.</em></h2>
+          <p>Nos bastidores, a tecnologia coleta, organiza, valida e prepara os dados. Na ponta, o gestor enxerga o que precisa.</p>
+        </div>
+
+        <div class="architecture reveal delay-1">
+          <div class="arch-column source-column">
+            <small>FONTES</small>
+            <div class="source-pill">Sienge</div>
+            <div class="source-pill">CV CRM</div>
+            <div class="source-pill">Prevision</div>
+            <div class="source-pill">Mobuss</div>
+            <div class="source-pill">ERP / WMS</div>
+          </div>
+          <div class="arch-connector"><span></span><b>→</b></div>
+          <div class="arch-core">
+            <small>CENTRAL DE DADOS</small>
+            <div class="lake-ring ring-1"></div>
+            <div class="lake-ring ring-2"></div>
+            <div class="lake-center">DATA<br>LAKE</div>
+            <div class="lake-tags"><span>captura</span><span>qualidade</span><span>histórico</span><span>governança</span></div>
+          </div>
+          <div class="arch-connector"><span></span><b>→</b></div>
+          <div class="arch-column output-column">
+            <small>GESTÃO</small>
+            <div class="output-card"><b>Power BI</b><span>indicadores executivos</span></div>
+            <div class="output-card"><b>Alertas</b><span>desvios e exceções</span></div>
+            <div class="output-card"><b>Análises</b><span>histórico e tendência</span></div>
+          </div>
+        </div>
+
+        <div class="mini-note reveal delay-2">
+          <strong>Em linguagem simples:</strong> é fazer a informação sair dos sistemas sem depender de alguém exportando, copiando e tratando planilhas manualmente todos os dias.
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" id="dashboards" data-label="Dashboards">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow light"><span></span> DO DADO À DECISÃO</div>
+          <h2>Dashboards criados para responder perguntas de gestão — <em>não para enfeitar uma tela.</em></h2>
+          <p>Selecione uma frente para visualizar o tipo de decisão que os indicadores podem apoiar.</p>
+        </div>
+
+        <div class="dashboard-explorer reveal delay-1">
+          <div class="dashboard-tabs" role="tablist">
+            <button class="dash-tab active" data-tab="engenharia" type="button">Engenharia</button>
+            <button class="dash-tab" data-tab="financeiro" type="button">Financeiro</button>
+            <button class="dash-tab" data-tab="comercial" type="button">Comercial</button>
+            <button class="dash-tab" data-tab="marketing" type="button">Marketing</button>
+            <button class="dash-tab" data-tab="projetos" type="button">Projetos</button>
+            <button class="dash-tab" data-tab="logistica" type="button">Logística</button>
+          </div>
+
+          <div class="dashboard-screen">
+            <div class="screen-top">
+              <div><span class="status-dot"></span> Visão executiva</div>
+              <div class="screen-dots"><i></i><i></i><i></i></div>
+            </div>
+            <div id="dashboardContent" class="dashboard-content"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="construcao" data-label="Construção & Incorporação">
+      <div class="slide-inner two-col">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> CONSTRUÇÃO & INCORPORAÇÃO</div>
+          <h2>Da viabilidade da obra ao recebimento do cliente: <em>uma visão integrada do empreendimento.</em></h2>
+          <p>Conhecimento de negócio permite criar indicadores conectados ao que realmente importa para engenharia, financeiro, comercial e diretoria.</p>
+          <div class="question-card">
+            <small>PERGUNTA EXECUTIVA</small>
+            <strong>“Estamos vendendo, construindo e recebendo no ritmo necessário para sustentar o resultado do empreendimento?”</strong>
+          </div>
+        </div>
+
+        <div class="topic-stack reveal delay-1">
+          <article>
+            <div class="topic-icon">S</div>
+            <div><h3>Engenharia & Curva S</h3><p>Planejado x realizado, evolução física, cronograma, marcos, contratos, medições e projeção de custo.</p></div>
+          </article>
+          <article>
+            <div class="topic-icon">R$</div>
+            <div><h3>Orçado x Realizado x A Realizar</h3><p>Orçamento, comprometido, realizado, saldo, projeção final e desvio por obra, etapa ou centro de custo.</p></div>
+          </article>
+          <article>
+            <div class="topic-icon">V</div>
+            <div><h3>Comercial & Curva de Vendas</h3><p>Leads, funil, conversão, VGV, ticket médio, estoque, meta, velocidade de vendas e reprogramação.</p></div>
+          </article>
+          <article>
+            <div class="topic-icon">→</div>
+            <div><h3>Repasses & Pro Soluto</h3><p>Etapa do processo, pendências, previsão, valor recebido, saldo, inadimplência e fluxo mensal.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide soft" id="logistica" data-label="Logística & WMS">
+      <div class="slide-inner two-col reverse-mobile">
+        <div class="warehouse-visual reveal">
+          <div class="warehouse-grid">
+            <div class="wh-row"><span>Recebimento</span><b>→</b><span>Armazenagem</span></div>
+            <div class="wh-row"><span>Inventário</span><b>→</b><span>Separação</span></div>
+            <div class="wh-row"><span>Conferência</span><b>→</b><span>Expedição</span></div>
+          </div>
+          <div class="wh-kpis">
+            <div><small>SLA</small><strong>Prazo</strong></div>
+            <div><small>Ocupação</small><strong>Capacidade</strong></div>
+            <div><small>Produtividade</small><strong>Operação</strong></div>
+            <div><small>Divergência</small><strong>Qualidade</strong></div>
+          </div>
+        </div>
+
+        <div class="section-heading reveal delay-1">
+          <div class="eyebrow"><span></span> LOGÍSTICA & WMS</div>
+          <h2>A tecnologia precisa acompanhar <em>a operação física em tempo real.</em></h2>
+          <p>
+            Estruturação de processos e indicadores para recebimento, armazenagem, inventário, movimentação, separação,
+            conferência e expedição — conectando ERP, WMS, integrações e gestão operacional.
+          </p>
+          <ul class="check-list">
+            <li>Lead time e gargalos</li>
+            <li>Produtividade por processo</li>
+            <li>Ocupação e capacidade</li>
+            <li>Inventário e divergências</li>
+            <li>SLA e performance de expedição</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="sistemas" data-label="Sistemas">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> GOVERNANÇA DE SISTEMAS</div>
+          <h2>Um bom sistema mal estruturado continua produzindo <em>processos ruins.</em></h2>
+          <p>O trabalho não é apenas “implantar”. É fazer o sistema representar corretamente como a empresa deve operar.</p>
+        </div>
+
+        <div class="systems-layout reveal delay-1">
+          <div class="systems-list">
+            <div class="system-card"><strong>Sienge</strong><span>Construção & Incorporação</span></div>
+            <div class="system-card"><strong>Prevision</strong><span>Planejamento de obras</span></div>
+            <div class="system-card"><strong>Mobuss</strong><span>Operação de campo</span></div>
+            <div class="system-card"><strong>CV CRM</strong><span>Jornada comercial</span></div>
+            <div class="system-card"><strong>Senior ERP</strong><span>Gestão empresarial</span></div>
+            <div class="system-card"><strong>Senior WMS</strong><span>Gestão logística</span></div>
+          </div>
+
+          <div class="governance-map">
+            <div class="gov-core">OPERAÇÃO<br>REAL</div>
+            <span class="orbit o1">Empresas</span>
+            <span class="orbit o2">Centros de custo</span>
+            <span class="orbit o3">Usuários</span>
+            <span class="orbit o4">Aprovações</span>
+            <span class="orbit o5">Cadastros</span>
+            <span class="orbit o6">Integrações</span>
+            <span class="orbit o7">Indicadores</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" id="case" data-label="Case Data Lake">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow light"><span></span> CASE TÉCNICO DEMONSTRÁVEL</div>
+          <h2>Sienge Data Lake: da API até uma camada preparada para <em>Power BI e gestão.</em></h2>
+          <p>Uma arquitetura real que demonstra capacidade de estruturar coleta, tratamento, governança e consumo de dados.</p>
+        </div>
+
+        <div class="case-pipeline reveal delay-1">
+          <div class="case-step"><span>01</span><strong>APIs Sienge</strong><small>coleta autenticada</small></div>
+          <i>→</i>
+          <div class="case-step"><span>02</span><strong>Bronze</strong><small>dado preservado</small></div>
+          <i>→</i>
+          <div class="case-step"><span>03</span><strong>Silver</strong><small>normalização e qualidade</small></div>
+          <i>→</i>
+          <div class="case-step"><span>04</span><strong>Gold</strong><small>fatos, dimensões e métricas</small></div>
+          <i>→</i>
+          <div class="case-step accent"><span>05</span><strong>Power BI</strong><small>consumo executivo</small></div>
+        </div>
+
+        <div class="case-grid reveal delay-2">
+          <article><small>ORQUESTRAÇÃO</small><strong>Apache Airflow</strong><p>Cargas organizadas e agendadas.</p></article>
+          <article><small>AMBIENTE</small><strong>Docker</strong><p>Execução reproduzível e padronizada.</p></article>
+          <article><small>QUALIDADE</small><strong>Testes + CI</strong><p>Validação automatizada do código.</p></article>
+          <article><small>GOVERNANÇA</small><strong>GitHub</strong><p>Versionamento e documentação.</p></article>
+          <article><small>FONTES</small><strong>Financeiro + Obras + Suprimentos</strong><p>Estrutura preparada para áreas de negócio.</p></article>
+          <article><small>SEGURANÇA</small><strong>Dados privados fora do Git</strong><p>Separação entre código, segredos e informação sensível.</p></article>
+        </div>
+
+        <div class="case-disclaimer reveal delay-3">
+          <strong>Por que esse case importa?</strong> Porque mostra domínio de toda a cadeia — não apenas da tela final do dashboard.
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="metodo" data-label="Método">
+      <div class="slide-inner">
+        <div class="section-heading centered reveal">
+          <div class="eyebrow"><span></span> MÉTODO DE TRABALHO</div>
+          <h2>Antes de automatizar, <em>entenda.</em> Antes de medir, <em>organize.</em></h2>
+        </div>
+
+        <div class="method-track reveal delay-1">
+          <div class="method-item"><span>01</span><h3>Diagnóstico</h3><p>Entender operação, sistemas, pessoas, dados e gargalos.</p></div>
+          <div class="method-item"><span>02</span><h3>Mapeamento</h3><p>Desenhar fluxo atual, responsabilidades e pontos de ruptura.</p></div>
+          <div class="method-item"><span>03</span><h3>Estruturação</h3><p>Padronizar cadastros, processos, regras e arquitetura de dados.</p></div>
+          <div class="method-item"><span>04</span><h3>Integração</h3><p>Conectar sistemas, APIs, bancos e fontes de informação.</p></div>
+          <div class="method-item"><span>05</span><h3>Automação</h3><p>Reduzir atividades manuais e repetitivas.</p></div>
+          <div class="method-item active"><span>06</span><h3>Gestão</h3><p>Criar indicadores e ciclos contínuos de melhoria.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide soft" id="escopo" data-label="Escopo de serviços">
+      <div class="slide-inner">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> ESCOPO DE SERVIÇOS</div>
+          <h2>Do diagnóstico pontual à <em>transformação completa da operação.</em></h2>
+        </div>
+
+        <div class="service-grid reveal delay-1">
+          <article><span>01</span><h3>Diagnóstico Executivo</h3><p>Mapa de gargalos, sistemas, dados, riscos e prioridades.</p><b>Ideal para:</b><small>empresas que sabem que algo está errado, mas não sabem por onde começar.</small></article>
+          <article><span>02</span><h3>Business Intelligence</h3><p>Indicadores executivos, operacionais e financeiros.</p><b>Ideal para:</b><small>gestores que precisam reduzir tempo de consolidação e decidir com visão única.</small></article>
+          <article><span>03</span><h3>Engenharia de Dados</h3><p>Data Lake, Data Warehouse, APIs, automação e qualidade.</p><b>Ideal para:</b><small>empresas com dados espalhados em muitos sistemas.</small></article>
+          <article><span>04</span><h3>Integração de Sistemas</h3><p>Conexão entre ERP, CRM, WMS, bases e indicadores.</p><b>Ideal para:</b><small>operações com digitação duplicada e retrabalho entre departamentos.</small></article>
+          <article><span>05</span><h3>Governança ERP/WMS/CRM</h3><p>Cadastros, perfis, alçadas, processos e desenho de utilização.</p><b>Ideal para:</b><small>empresas que possuem bons sistemas, mas ainda trabalham “por fora”.</small></article>
+          <article class="featured"><span>06</span><h3>Transformação Operacional</h3><p>Processos + sistemas + dados + automação + gestão.</p><b>Ideal para:</b><small>empresas em crescimento que precisam ganhar controle sem aumentar o caos.</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="calculadora" data-label="Custo do retrabalho">
+      <div class="slide-inner calculator-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow"><span></span> CUSTO DE NÃO AGIR</div>
+          <h2>Quanto custa manter pessoas <em>movendo informação manualmente?</em></h2>
+          <p>Use a simulação abaixo para transformar um desperdício “pequeno” em impacto mensal e anual.</p>
+          <div class="calc-disclaimer">Estimativa ilustrativa. Não representa diagnóstico financeiro nem promessa de economia.</div>
+        </div>
+
+        <div class="calculator-card reveal delay-1">
+          <label>Quantas pessoas repetem esse processo?
+            <input id="peopleInput" type="number" min="1" value="8" />
+          </label>
+          <label>Minutos perdidos por pessoa / dia
+            <input id="minutesInput" type="number" min="1" value="35" />
+          </label>
+          <label>Custo médio da hora por pessoa (R$)
+            <input id="hourlyInput" type="number" min="1" value="45" />
+          </label>
+          <div class="calc-results">
+            <div><small>HORAS / MÊS</small><strong id="hoursResult">0</strong></div>
+            <div><small>CUSTO / MÊS</small><strong id="monthResult">R$ 0</strong></div>
+            <div class="annual"><small>CUSTO / ANO</small><strong id="yearResult">R$ 0</strong></div>
+          </div>
+          <p class="calc-insight" id="calcInsight"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" id="porque" data-label="Por que importa">
+      <div class="slide-inner why-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow light"><span></span> POR QUE ISSO IMPORTA AGORA</div>
+          <h2>Crescimento aumenta a complexidade. <em>Processo ruim também escala.</em></h2>
+          <p>Quanto mais a empresa cresce, maior o custo de manter informação dispersa, regras informais e decisões dependentes de poucas pessoas.</p>
+        </div>
+
+        <div class="why-cards reveal delay-1">
+          <div><span>01</span><strong>Mais volume</strong><p>Mais dados, transações, clientes, obras ou movimentos.</p></div>
+          <div><span>02</span><strong>Mais dependência</strong><p>Mais pessoas tentando descobrir “como funciona”.</p></div>
+          <div><span>03</span><strong>Mais risco</strong><p>Erros pequenos passam a ter impacto financeiro maior.</p></div>
+          <div class="highlight"><span>04</span><strong>Mais urgência</strong><p>Organizar depois custa mais do que estruturar antes.</p></div>
+        </div>
+
+        <div class="big-quote reveal delay-2">Tecnologia não corrige processo ruim sozinha.<br><em>Mas processo + dados + tecnologia podem transformar a capacidade de gestão.</em></div>
+      </div>
+    </section>
+
+    <section class="slide contact" id="contato" data-label="Contato">
+      <div class="slide-inner contact-grid">
+        <div class="contact-copy reveal">
+          <div class="eyebrow"><span></span> PRÓXIMO PASSO</div>
+          <h2>Antes de comprar outro sistema, <em>descubra onde sua operação realmente está perdendo eficiência.</em></h2>
+          <p>Uma boa transformação começa com diagnóstico: entender a operação real, os dados disponíveis e as decisões que hoje dependem de esforço manual.</p>
+          <div class="contact-actions">
+            <a class="primary-btn" href="https://cruzfarias.com.br" target="_blank" rel="noopener">Conhecer mais</a>
+            <button class="ghost-btn dark-text" id="copySiteBtn" type="button">Copiar site</button>
+          </div>
+          <div class="site-line">cruzfarias.com.br</div>
+        </div>
+
+        <div class="final-card reveal delay-1">
+          <small>GUSTAVO FARIAS</small>
+          <strong>Processos.<br>Sistemas.<br>Dados.<br><em>Decisão.</em></strong>
+          <span>Tecnologia aplicada à realidade da operação.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="keyboard-hint">↑ ↓ ou PageUp / PageDown</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
