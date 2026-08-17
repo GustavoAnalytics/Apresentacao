@@ -225,61 +225,139 @@
       </div>
     </section>
 
-    <section class="slide dark dashboard-hub-slide" id="dashboards" data-label="Dashboards">
-      <div class="slide-inner dashboard-hub-inner">
-        <div class="section-heading reveal">
-          <div class="eyebrow light"><span></span> COCKPIT EXECUTIVO INTEGRADO</div>
-          <h2>Seis dashboards. <em>Uma única experiência de navegação.</em></h2>
-          <p>Selecione uma área e navegue no dashboard completo sem sair desta página. Os painéis abaixo são carregados diretamente das versões publicadas no GitHub Pages.</p>
+    <section class="slide dark analytics-studio-slide" id="dashboards" data-label="Dashboards">
+      <div class="slide-inner analytics-studio-inner">
+        <div class="analytics-studio-heading reveal">
+          <div class="section-heading analytics-heading-copy">
+            <div class="eyebrow light"><span></span> ANALYTICS COMMAND CENTER</div>
+            <h2>Não é uma galeria de dashboards. <em>É uma central de decisão.</em></h2>
+            <p>Explore seis cockpits executivos conectados aos principais momentos da gestão — do orçamento da obra à venda, caixa, marketing, incorporação e viabilidade.</p>
+          </div>
+          <div class="analytics-proof">
+            <div><strong>06</strong><span>cockpits executivos</span></div>
+            <div><strong>1</strong><span>experiência integrada</span></div>
+            <div><strong>360º</strong><span>visão do empreendimento</span></div>
+          </div>
         </div>
 
-        <div class="dashboard-frame-explorer reveal delay-1" id="dashboardHub">
-          <div class="dashboard-frame-tabs" role="tablist" aria-label="Dashboards executivos">
-            <button class="embed-tab active" data-dashboard-key="engenharia" type="button"><span>01</span>Engenharia</button>
-            <button class="embed-tab" data-dashboard-key="comercial" type="button"><span>02</span>Comercial</button>
-            <button class="embed-tab" data-dashboard-key="financeiro" type="button"><span>03</span>Financeiro</button>
-            <button class="embed-tab" data-dashboard-key="marketing" type="button"><span>04</span>Marketing</button>
-            <button class="embed-tab" data-dashboard-key="projetos" type="button"><span>05</span>Projetos</button>
-            <button class="embed-tab" data-dashboard-key="viabilidade" type="button"><span>06</span>Viabilidade</button>
-          </div>
+        <div class="analytics-studio reveal delay-1" id="dashboardHub">
+          <aside class="analytics-catalog" aria-label="Catálogo de dashboards">
+            <div class="catalog-head">
+              <div>
+                <small>ESCOLHA UMA VISÃO</small>
+                <strong>Cockpits disponíveis</strong>
+              </div>
+              <span class="catalog-count">6</span>
+            </div>
 
-          <div class="dashboard-frame-shell" id="dashboardFrameShell">
-            <div class="dashboard-frame-toolbar">
-              <div class="dashboard-frame-title">
-                <span class="embed-live-dot"></span>
-                <div>
-                  <small>DASHBOARD ATIVO</small>
-                  <strong id="embedDashboardTitle">Engenharia</strong>
+            <div class="analytics-card-list" role="tablist" aria-label="Dashboards executivos">
+              <button class="analytics-card active" data-dashboard-key="engenharia" type="button" role="tab" aria-selected="true">
+                <span class="analytics-card-index">01</span>
+                <span class="analytics-card-icon">⌁</span>
+                <span class="analytics-card-copy"><strong>Engenharia</strong><small>Prazo • Custo • Curva S</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+              <button class="analytics-card" data-dashboard-key="comercial" type="button" role="tab" aria-selected="false">
+                <span class="analytics-card-index">02</span>
+                <span class="analytics-card-icon">V</span>
+                <span class="analytics-card-copy"><strong>Comercial</strong><small>Reserva • Venda • VGV</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+              <button class="analytics-card" data-dashboard-key="financeiro" type="button" role="tab" aria-selected="false">
+                <span class="analytics-card-index">03</span>
+                <span class="analytics-card-icon">R$</span>
+                <span class="analytics-card-copy"><strong>Financeiro</strong><small>Caixa • Budget • DRE</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+              <button class="analytics-card" data-dashboard-key="marketing" type="button" role="tab" aria-selected="false">
+                <span class="analytics-card-index">04</span>
+                <span class="analytics-card-icon">↗</span>
+                <span class="analytics-card-copy"><strong>Marketing</strong><small>Investimento • Lead • Conversão</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+              <button class="analytics-card" data-dashboard-key="projetos" type="button" role="tab" aria-selected="false">
+                <span class="analytics-card-index">05</span>
+                <span class="analytics-card-icon">▦</span>
+                <span class="analytics-card-copy"><strong>Projetos</strong><small>Pipeline • Marcos • Aprovações</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+              <button class="analytics-card" data-dashboard-key="viabilidade" type="button" role="tab" aria-selected="false">
+                <span class="analytics-card-index">06</span>
+                <span class="analytics-card-icon">%</span>
+                <span class="analytics-card-copy"><strong>Viabilidade</strong><small>VGV • Custos • Margem</small></span>
+                <span class="analytics-card-arrow">→</span>
+              </button>
+            </div>
+
+            <div class="catalog-note">
+              <span class="catalog-live-dot"></span>
+              <div><strong>Projetos navegáveis</strong><small>Publicados no GitHub Pages</small></div>
+            </div>
+          </aside>
+
+          <section class="analytics-workspace" id="dashboardFrameShell" aria-live="polite">
+            <div class="workspace-header">
+              <div class="workspace-title-wrap">
+                <div class="workspace-number" id="embedDashboardNumber">01</div>
+                <div class="workspace-title">
+                  <div class="workspace-kicker"><span class="embed-live-dot"></span><span id="embedDashboardArea">OPERAÇÃO & ENGENHARIA</span></div>
+                  <h3 id="embedDashboardTitle">Engenharia</h3>
+                  <p id="embedDashboardDescription">Planejado x realizado, avanço físico, custo, medições e tendência da obra.</p>
                 </div>
               </div>
-              <div class="dashboard-frame-actions">
-                <button type="button" class="embed-action" id="embedReloadBtn" title="Atualizar dashboard" aria-label="Atualizar dashboard">↻ <span>Atualizar</span></button>
-                <button type="button" class="embed-action" id="embedOpenBtn" title="Abrir em nova guia" aria-label="Abrir dashboard em nova guia">↗ <span>Nova guia</span></button>
-                <button type="button" class="embed-action primary" id="embedExpandBtn" title="Expandir dashboard" aria-label="Expandir dashboard">⛶ <span>Expandir</span></button>
+              <div class="workspace-actions">
+                <button type="button" class="workspace-action" id="embedReloadBtn" title="Atualizar dashboard">↻ <span>Atualizar</span></button>
+                <button type="button" class="workspace-action" id="embedOpenBtn" title="Abrir em nova guia">↗ <span>Abrir</span></button>
+                <button type="button" class="workspace-action primary" id="embedExpandBtn" title="Expandir dashboard">⛶ <span>Tela cheia</span></button>
               </div>
             </div>
 
-            <div class="dashboard-frame-stage">
-              <div class="embed-loading" id="embedLoading" aria-live="polite">
-                <span class="embed-spinner"></span>
-                <strong>Carregando dashboard...</strong>
+            <div class="workspace-context">
+              <div class="context-question">
+                <small>PERGUNTA QUE O PAINEL RESPONDE</small>
+                <strong id="embedDashboardQuestion">A obra está evoluindo no ritmo e custo planejados?</strong>
               </div>
-              <iframe
-                id="dashboardIframe"
-                class="dashboard-iframe"
-                src="https://gustavoanalytics.github.io/dashboard-engenharia/"
-                title="Dashboard Engenharia"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin">
-              </iframe>
+              <div class="context-meta">
+                <div><small>FOCO</small><strong id="embedDashboardFocus">Prazo + Custo</strong></div>
+                <div><small>INDICADORES</small><strong id="embedDashboardKpis">Curva S • Medições • Tendência</strong></div>
+                <div><small>VISÃO</small><strong id="embedDashboardAudience">Diretoria & Engenharia</strong></div>
+              </div>
             </div>
 
-            <div class="dashboard-frame-footer">
-              <div><span class="embed-status-dot"></span><strong id="embedDashboardStatus">Engenharia</strong><small> • navegação incorporada ao portfólio</small></div>
-              <a id="embedFallbackLink" href="https://gustavoanalytics.github.io/dashboard-engenharia/" target="_blank" rel="noopener">Problema para visualizar? Abrir painel diretamente →</a>
+            <div class="workspace-browser">
+              <div class="browser-bar">
+                <div class="browser-dots"><i></i><i></i><i></i></div>
+                <div class="browser-address"><span>🔒</span><span id="embedDashboardHost">gustavoanalytics.github.io/dashboard-engenharia/</span></div>
+                <div class="browser-state"><span class="embed-status-dot"></span> LIVE</div>
+              </div>
+
+              <div class="dashboard-frame-stage">
+                <div class="embed-loading show" id="embedLoading" aria-live="polite">
+                  <div class="loading-orbit"><span></span><i></i></div>
+                  <strong id="embedLoadingTitle">Abrindo cockpit de Engenharia</strong>
+                  <small>Carregando a versão publicada do dashboard...</small>
+                </div>
+                <iframe id="dashboardIframe" class="dashboard-iframe" src="https://gustavoanalytics.github.io/dashboard-engenharia/" title="Dashboard Engenharia" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              </div>
             </div>
-          </div>
+
+            <div class="workspace-footer">
+              <div class="workspace-nav">
+                <button type="button" id="embedPrevBtn">← <span>Anterior</span></button>
+                <span><strong id="embedDashboardPosition">01 / 06</strong><small> dashboard ativo</small></span>
+                <button type="button" id="embedNextBtn"><span>Próximo</span> →</button>
+              </div>
+              <a id="embedFallbackLink" href="https://gustavoanalytics.github.io/dashboard-engenharia/" target="_blank" rel="noopener">Abrir dashboard diretamente ↗</a>
+            </div>
+          </section>
+        </div>
+
+        <div class="analytics-bottom-note reveal delay-2">
+          <div><span>01</span><strong>Explore</strong><small>Escolha uma área</small></div>
+          <i>→</i>
+          <div><span>02</span><strong>Navegue</strong><small>Use filtros e indicadores reais</small></div>
+          <i>→</i>
+          <div><span>03</span><strong>Decida</strong><small>Transforme dado em ação</small></div>
         </div>
       </div>
     </section>

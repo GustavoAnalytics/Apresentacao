@@ -24,7 +24,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.querySelectorAll('.counter').forEach(animateCounter);
     }
   });
-}, { threshold: 0.42 });
+}, { threshold: 0.12, rootMargin: '-6% 0px -6% 0px' });
 sections.forEach(section => observer.observe(section));
 
 function currentSectionIndex() {
@@ -38,7 +38,7 @@ function goToIndex(i) {
   sections[safe].scrollIntoView({ behavior: 'smooth' });
 }
 window.addEventListener('keydown', (e) => {
-  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+  if (['INPUT','TEXTAREA','BUTTON','A','SELECT'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable) return;
   const i = currentSectionIndex();
   if (['ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); goToIndex(i + 1); }
   if (['ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); goToIndex(i - 1); }
@@ -70,93 +70,181 @@ function setupImageFallback(img, fallback) {
 setupImageFallback(document.getElementById('profilePhoto'), document.getElementById('photoFallback'));
 document.querySelectorAll('.secondaryPhoto').forEach((img, i) => setupImageFallback(img, document.querySelectorAll('.secondaryFallback')[i]));
 
-// Hub real de dashboards incorporados via iframe
+// Analytics Command Center — dashboards publicados incorporados via um único iframe
 const embeddedDashboards = {
   engenharia: {
+    number: '01',
     title: 'Engenharia',
-    url: 'https://gustavoanalytics.github.io/dashboard-engenharia/'
+    area: 'OPERAÇÃO & ENGENHARIA',
+    url: 'https://gustavoanalytics.github.io/dashboard-engenharia/',
+    description: 'Planejado x realizado, avanço físico, custo, medições e tendência da obra.',
+    question: 'A obra está evoluindo no ritmo e custo planejados?',
+    focus: 'Prazo + Custo',
+    kpis: 'Curva S • Medições • Tendência',
+    audience: 'Diretoria & Engenharia'
   },
   comercial: {
+    number: '02',
     title: 'Comercial',
-    url: 'https://gustavoanalytics.github.io/dashboard-comercial/'
+    area: 'VENDAS & RECEITA',
+    url: 'https://gustavoanalytics.github.io/dashboard-comercial/',
+    description: 'Da reserva à venda, com estoque, VGV, corretores, imobiliárias, repasses e pro soluto.',
+    question: 'Estamos transformando estoque em vendas e VGV na velocidade necessária?',
+    focus: 'Venda + VGV',
+    kpis: 'Reservas • VSO • Repasses',
+    audience: 'Diretoria & Comercial'
   },
   financeiro: {
+    number: '03',
     title: 'Financeiro',
-    url: 'https://gustavoanalytics.github.io/dashboard-financeiro/'
+    area: 'FINANÇAS & CONTROLADORIA',
+    url: 'https://gustavoanalytics.github.io/dashboard-financeiro/',
+    description: 'Caixa, budget, DRE, capital de giro, contas a pagar/receber e previsão financeira.',
+    question: 'A operação gera caixa e resultado suficientes para sustentar o plano?',
+    focus: 'Caixa + Resultado',
+    kpis: 'DRE • Budget • Forecast',
+    audience: 'Diretoria & Financeiro'
   },
   marketing: {
+    number: '04',
     title: 'Marketing',
-    url: 'https://gustavoanalytics.github.io/dashboard-marketing/'
+    area: 'AQUISIÇÃO & CONVERSÃO',
+    url: 'https://gustavoanalytics.github.io/dashboard-marketing/',
+    description: 'Investimento, mídia paga, offline, eventos, leads, reservas, vendas e retorno sobre VGV.',
+    question: 'O investimento em marketing está virando demanda, reserva e venda?',
+    focus: 'CAC + Conversão',
+    kpis: 'Leads • ROI • VGV',
+    audience: 'Diretoria & Marketing'
   },
   projetos: {
+    number: '05',
     title: 'Projetos',
-    url: 'https://gustavoanalytics.github.io/dashboard-projetos-/'
+    area: 'INCORPORAÇÃO & DESENVOLVIMENTO',
+    url: 'https://gustavoanalytics.github.io/dashboard-projetos-/',
+    description: 'Pipeline de incorporação, aprovações, marcos, riscos e prontidão para lançamento.',
+    question: 'Quais projetos estão prontos para avançar e quais podem comprometer o lançamento?',
+    focus: 'Prazo + Gate',
+    kpis: 'Pipeline • Marcos • Riscos',
+    audience: 'Diretoria & Incorporação'
   },
   viabilidade: {
+    number: '06',
     title: 'Viabilidade',
-    url: 'https://gustavoanalytics.github.io/-dashboard-viabilidade/'
+    area: 'INVESTIMENTO & RENTABILIDADE',
+    url: 'https://gustavoanalytics.github.io/-dashboard-viabilidade/',
+    description: 'Comparação entre viabilidade prospectada, aprovada e executiva, com VGV, custos e margem.',
+    question: 'O projeto continua entregando a rentabilidade que justificou o investimento?',
+    focus: 'Margem + Retorno',
+    kpis: 'VGV • Custos • Contribuição',
+    audience: 'Diretoria & Incorporação'
   }
 };
 
+const dashboardOrder = Object.keys(embeddedDashboards);
 const dashboardIframe = document.getElementById('dashboardIframe');
+const dashboardFrameShell = document.getElementById('dashboardFrameShell');
+const embedDashboardNumber = document.getElementById('embedDashboardNumber');
+const embedDashboardArea = document.getElementById('embedDashboardArea');
 const embedDashboardTitle = document.getElementById('embedDashboardTitle');
-const embedDashboardStatus = document.getElementById('embedDashboardStatus');
+const embedDashboardDescription = document.getElementById('embedDashboardDescription');
+const embedDashboardQuestion = document.getElementById('embedDashboardQuestion');
+const embedDashboardFocus = document.getElementById('embedDashboardFocus');
+const embedDashboardKpis = document.getElementById('embedDashboardKpis');
+const embedDashboardAudience = document.getElementById('embedDashboardAudience');
+const embedDashboardHost = document.getElementById('embedDashboardHost');
+const embedDashboardPosition = document.getElementById('embedDashboardPosition');
 const embedFallbackLink = document.getElementById('embedFallbackLink');
 const embedLoading = document.getElementById('embedLoading');
+const embedLoadingTitle = document.getElementById('embedLoadingTitle');
 const embedReloadBtn = document.getElementById('embedReloadBtn');
 const embedOpenBtn = document.getElementById('embedOpenBtn');
 const embedExpandBtn = document.getElementById('embedExpandBtn');
-const dashboardFrameShell = document.getElementById('dashboardFrameShell');
-let activeEmbeddedDashboard = 'engenharia';
+const embedPrevBtn = document.getElementById('embedPrevBtn');
+const embedNextBtn = document.getElementById('embedNextBtn');
+let activeEmbeddedDashboard = sessionStorage.getItem('portfolio-dashboard') || 'engenharia';
+let embedLoadTimer;
 
-function setEmbeddedLoading(isLoading) {
+function setEmbeddedLoading(isLoading, title) {
   if (!embedLoading) return;
+  if (title && embedLoadingTitle) embedLoadingTitle.textContent = title;
   embedLoading.classList.toggle('show', isLoading);
 }
 
-function selectEmbeddedDashboard(key) {
+function cleanDashboardHost(url) {
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '/')
+}
+
+function selectEmbeddedDashboard(key, options = {}) {
   const item = embeddedDashboards[key];
   if (!item || !dashboardIframe) return;
   activeEmbeddedDashboard = key;
-  document.querySelectorAll('.embed-tab').forEach(tab => {
-    const active = tab.dataset.dashboardKey === key;
-    tab.classList.toggle('active', active);
-    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+  sessionStorage.setItem('portfolio-dashboard', key);
+
+  document.querySelectorAll('.analytics-card').forEach(card => {
+    const active = card.dataset.dashboardKey === key;
+    card.classList.toggle('active', active);
+    card.setAttribute('aria-selected', active ? 'true' : 'false');
+    if (active && options.scrollCard && window.innerWidth <= 740) {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   });
-  embedDashboardTitle.textContent = item.title;
-  embedDashboardStatus.textContent = item.title;
-  embedFallbackLink.href = item.url;
+
+  const index = dashboardOrder.indexOf(key);
+  if (embedDashboardNumber) embedDashboardNumber.textContent = item.number;
+  if (embedDashboardArea) embedDashboardArea.textContent = item.area;
+  if (embedDashboardTitle) embedDashboardTitle.textContent = item.title;
+  if (embedDashboardDescription) embedDashboardDescription.textContent = item.description;
+  if (embedDashboardQuestion) embedDashboardQuestion.textContent = item.question;
+  if (embedDashboardFocus) embedDashboardFocus.textContent = item.focus;
+  if (embedDashboardKpis) embedDashboardKpis.textContent = item.kpis;
+  if (embedDashboardAudience) embedDashboardAudience.textContent = item.audience;
+  if (embedDashboardHost) embedDashboardHost.textContent = cleanDashboardHost(item.url);
+  if (embedDashboardPosition) embedDashboardPosition.textContent = `${String(index + 1).padStart(2, '0')} / ${String(dashboardOrder.length).padStart(2, '0')}`;
+  if (embedFallbackLink) embedFallbackLink.href = item.url;
   dashboardIframe.title = `Dashboard ${item.title}`;
-  setEmbeddedLoading(true);
-  // Reatribuir a URL funciona também quando o dashboard está em outra origem.
+
+  setEmbeddedLoading(true, `Abrindo cockpit de ${item.title}`);
+  clearTimeout(embedLoadTimer);
   dashboardIframe.src = item.url;
+  embedLoadTimer = setTimeout(() => setEmbeddedLoading(false), 9000);
 }
 
-document.querySelectorAll('.embed-tab').forEach(tab => {
-  tab.addEventListener('click', () => selectEmbeddedDashboard(tab.dataset.dashboardKey));
+function stepEmbeddedDashboard(direction) {
+  const current = dashboardOrder.indexOf(activeEmbeddedDashboard);
+  const next = (current + direction + dashboardOrder.length) % dashboardOrder.length;
+  selectEmbeddedDashboard(dashboardOrder[next], { scrollCard: true });
+}
+
+document.querySelectorAll('.analytics-card').forEach(card => {
+  card.addEventListener('click', () => selectEmbeddedDashboard(card.dataset.dashboardKey, { scrollCard: true }));
 });
 
-if (dashboardIframe) {
-  dashboardIframe.addEventListener('load', () => setEmbeddedLoading(false));
-}
+dashboardIframe?.addEventListener('load', () => {
+  clearTimeout(embedLoadTimer);
+  setEmbeddedLoading(false);
+});
 
 embedReloadBtn?.addEventListener('click', () => {
   const item = embeddedDashboards[activeEmbeddedDashboard];
-  setEmbeddedLoading(true);
-  // Reatribuir a URL é seguro também quando o iframe é cross-origin.
+  setEmbeddedLoading(true, `Atualizando cockpit de ${item.title}`);
+  clearTimeout(embedLoadTimer);
   dashboardIframe.src = item.url;
+  embedLoadTimer = setTimeout(() => setEmbeddedLoading(false), 9000);
 });
 
 embedOpenBtn?.addEventListener('click', () => {
   window.open(embeddedDashboards[activeEmbeddedDashboard].url, '_blank', 'noopener');
 });
 
+embedPrevBtn?.addEventListener('click', () => stepEmbeddedDashboard(-1));
+embedNextBtn?.addEventListener('click', () => stepEmbeddedDashboard(1));
+
 function setDashboardExpanded(expanded) {
   dashboardFrameShell?.classList.toggle('embed-expanded', expanded);
   document.body.classList.toggle('embed-modal-open', expanded);
   if (embedExpandBtn) {
-    embedExpandBtn.innerHTML = expanded ? '× <span>Fechar</span>' : '⛶ <span>Expandir</span>';
-    embedExpandBtn.setAttribute('aria-label', expanded ? 'Fechar dashboard expandido' : 'Expandir dashboard');
+    embedExpandBtn.innerHTML = expanded ? '× <span>Fechar</span>' : '⛶ <span>Tela cheia</span>';
+    embedExpandBtn.setAttribute('aria-label', expanded ? 'Fechar cockpit expandido' : 'Expandir cockpit');
   }
 }
 
@@ -164,15 +252,14 @@ embedExpandBtn?.addEventListener('click', () => {
   setDashboardExpanded(!dashboardFrameShell.classList.contains('embed-expanded'));
 });
 
-window.addEventListener('keydown', (event) => {
+window.addEventListener('keydown', event => {
   if (event.key === 'Escape' && dashboardFrameShell?.classList.contains('embed-expanded')) {
     event.stopImmediatePropagation();
     setDashboardExpanded(false);
   }
 }, true);
 
-// Estado inicial
-selectEmbeddedDashboard(activeEmbeddedDashboard);
+selectEmbeddedDashboard(embeddedDashboards[activeEmbeddedDashboard] ? activeEmbeddedDashboard : 'engenharia');
 
 // Calculadora de custo de retrabalho
 const peopleInput = document.getElementById('peopleInput');
