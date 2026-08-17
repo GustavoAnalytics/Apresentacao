@@ -24,7 +24,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.querySelectorAll('.counter').forEach(animateCounter);
     }
   });
-}, { threshold: 0.12, rootMargin: '-6% 0px -6% 0px' });
+}, { threshold: 0.42 });
 sections.forEach(section => observer.observe(section));
 
 function currentSectionIndex() {
@@ -38,7 +38,7 @@ function goToIndex(i) {
   sections[safe].scrollIntoView({ behavior: 'smooth' });
 }
 window.addEventListener('keydown', (e) => {
-  if (['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SELECT'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable) return;
+  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
   const i = currentSectionIndex();
   if (['ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); goToIndex(i + 1); }
   if (['ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); goToIndex(i - 1); }
@@ -70,65 +70,109 @@ function setupImageFallback(img, fallback) {
 setupImageFallback(document.getElementById('profilePhoto'), document.getElementById('photoFallback'));
 document.querySelectorAll('.secondaryPhoto').forEach((img, i) => setupImageFallback(img, document.querySelectorAll('.secondaryFallback')[i]));
 
-// Conteúdo interativo de dashboards
-const dashboards = {
+// Hub real de dashboards incorporados via iframe
+const embeddedDashboards = {
   engenharia: {
-    kpis: [['Avanço físico','68%','+4,2 p.p.'],['Custo comprometido','R$ 8,4 mi','78% do orçamento'],['Desvio previsto','-2,1%','em monitoramento']],
-    question: 'A obra está avançando no ritmo planejado e dentro do custo esperado?',
-    metrics: [['Curva S','Planejado x Realizado'],['Medições','Status e saldo'],['Orçamento','Realizado + A realizar'],['Suprimentos','Pendências críticas']],
-    bars: [42,58,51,70,64,79,73,88]
-  },
-  financeiro: {
-    kpis: [['Caixa projetado','R$ 4,2 mi','próx. 90 dias'],['A receber','R$ 7,8 mi','carteira ativa'],['Vencido','R$ 312 mil','prioridade']],
-    question: 'A empresa terá caixa suficiente para cumprir compromissos futuros?',
-    metrics: [['Fluxo de caixa','Previsto x Realizado'],['Inadimplência','Evolução'],['Pagamentos','Curto prazo'],['Recebimentos','Curto prazo']],
-    bars: [65,58,71,62,74,68,81,77]
+    title: 'Engenharia',
+    url: 'https://gustavoanalytics.github.io/dashboard-engenharia/'
   },
   comercial: {
-    kpis: [['Leads','1.284','mês'],['Conversão','6,8%','funil total'],['VGV vendido','R$ 12,6 mi','acumulado']],
-    question: 'O funil comercial está gerando volume suficiente para atingir a meta de vendas?',
-    metrics: [['Origem','Leads por canal'],['Visitas','Agendado x realizado'],['Vendas','Meta x Realizado'],['Estoque','Unidades disponíveis']],
-    bars: [28,46,52,67,58,79,86,74]
+    title: 'Comercial',
+    url: 'https://gustavoanalytics.github.io/dashboard-comercial/'
+  },
+  financeiro: {
+    title: 'Financeiro',
+    url: 'https://gustavoanalytics.github.io/dashboard-financeiro/'
   },
   marketing: {
-    kpis: [['Investimento','R$ 185 mil','período'],['CPL','R$ 144','médio'],['VGV atribuído','R$ 6,9 mi','campanhas']],
-    question: 'Quais campanhas realmente contribuem para oportunidades e vendas?',
-    metrics: [['Canais','Eficiência'],['Campanhas','Retorno'],['Custo','Por oportunidade'],['Vendas','Origem']],
-    bars: [38,62,49,73,55,84,67,91]
+    title: 'Marketing',
+    url: 'https://gustavoanalytics.github.io/dashboard-marketing/'
   },
   projetos: {
-    kpis: [['Projetos ativos','18','portfólio'],['No prazo','72%','status'],['Riscos críticos','3','ação necessária']],
-    question: 'Quais projetos exigem decisão executiva antes de impactarem prazo ou custo?',
-    metrics: [['Marcos','Próximos 30 dias'],['Riscos','Severidade'],['Responsáveis','Pendências'],['Prazo','Desvios']],
-    bars: [70,55,78,66,82,61,87,75]
+    title: 'Projetos',
+    url: 'https://gustavoanalytics.github.io/dashboard-projetos-/'
   },
-  logistica: {
-    kpis: [['SLA expedição','96,2%','período'],['Ocupação','81%','armazenagem'],['Divergência','0,7%','inventário']],
-    question: 'Onde o fluxo logístico está consumindo tempo e capacidade acima do esperado?',
-    metrics: [['Recebimento','Lead time'],['Separação','Produtividade'],['Inventário','Acuracidade'],['Expedição','SLA']],
-    bars: [53,67,72,60,78,83,76,92]
+  viabilidade: {
+    title: 'Viabilidade',
+    url: 'https://gustavoanalytics.github.io/-dashboard-viabilidade/'
   }
 };
 
-const dashboardContent = document.getElementById('dashboardContent');
-function renderDashboard(key) {
-  const d = dashboards[key];
-  dashboardContent.innerHTML = `
-    <div class="dash-main">
-      <div class="kpi-row">${d.kpis.map(k => `<div class="kpi"><small>${k[0]}</small><strong>${k[1]}</strong><em>${k[2]}</em></div>`).join('')}</div>
-      <div class="chart-card"><h4>Tendência / evolução</h4><div class="fake-chart">${d.bars.map(v => `<span style="height:${v}%"></span>`).join('')}</div></div>
-    </div>
-    <div class="dash-side">
-      <div class="decision-box"><small>PERGUNTA QUE O PAINEL PRECISA RESPONDER</small><strong>${d.question}</strong></div>
-      <div class="chart-card"><h4>Indicadores-chave</h4><div class="metric-list">${d.metrics.map(m => `<div><span>${m[0]}</span><b>${m[1]}</b></div>`).join('')}</div></div>
-    </div>`;
+const dashboardIframe = document.getElementById('dashboardIframe');
+const embedDashboardTitle = document.getElementById('embedDashboardTitle');
+const embedDashboardStatus = document.getElementById('embedDashboardStatus');
+const embedFallbackLink = document.getElementById('embedFallbackLink');
+const embedLoading = document.getElementById('embedLoading');
+const embedReloadBtn = document.getElementById('embedReloadBtn');
+const embedOpenBtn = document.getElementById('embedOpenBtn');
+const embedExpandBtn = document.getElementById('embedExpandBtn');
+const dashboardFrameShell = document.getElementById('dashboardFrameShell');
+let activeEmbeddedDashboard = 'engenharia';
+
+function setEmbeddedLoading(isLoading) {
+  if (!embedLoading) return;
+  embedLoading.classList.toggle('show', isLoading);
 }
-renderDashboard('engenharia');
-document.querySelectorAll('.dash-tab').forEach(tab => tab.addEventListener('click', () => {
-  document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-  tab.classList.add('active');
-  renderDashboard(tab.dataset.tab);
-}));
+
+function selectEmbeddedDashboard(key) {
+  const item = embeddedDashboards[key];
+  if (!item || !dashboardIframe) return;
+  activeEmbeddedDashboard = key;
+  document.querySelectorAll('.embed-tab').forEach(tab => {
+    const active = tab.dataset.dashboardKey === key;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  embedDashboardTitle.textContent = item.title;
+  embedDashboardStatus.textContent = item.title;
+  embedFallbackLink.href = item.url;
+  dashboardIframe.title = `Dashboard ${item.title}`;
+  setEmbeddedLoading(true);
+  // Reatribuir a URL funciona também quando o dashboard está em outra origem.
+  dashboardIframe.src = item.url;
+}
+
+document.querySelectorAll('.embed-tab').forEach(tab => {
+  tab.addEventListener('click', () => selectEmbeddedDashboard(tab.dataset.dashboardKey));
+});
+
+if (dashboardIframe) {
+  dashboardIframe.addEventListener('load', () => setEmbeddedLoading(false));
+}
+
+embedReloadBtn?.addEventListener('click', () => {
+  const item = embeddedDashboards[activeEmbeddedDashboard];
+  setEmbeddedLoading(true);
+  // Reatribuir a URL é seguro também quando o iframe é cross-origin.
+  dashboardIframe.src = item.url;
+});
+
+embedOpenBtn?.addEventListener('click', () => {
+  window.open(embeddedDashboards[activeEmbeddedDashboard].url, '_blank', 'noopener');
+});
+
+function setDashboardExpanded(expanded) {
+  dashboardFrameShell?.classList.toggle('embed-expanded', expanded);
+  document.body.classList.toggle('embed-modal-open', expanded);
+  if (embedExpandBtn) {
+    embedExpandBtn.innerHTML = expanded ? '× <span>Fechar</span>' : '⛶ <span>Expandir</span>';
+    embedExpandBtn.setAttribute('aria-label', expanded ? 'Fechar dashboard expandido' : 'Expandir dashboard');
+  }
+}
+
+embedExpandBtn?.addEventListener('click', () => {
+  setDashboardExpanded(!dashboardFrameShell.classList.contains('embed-expanded'));
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && dashboardFrameShell?.classList.contains('embed-expanded')) {
+    event.stopImmediatePropagation();
+    setDashboardExpanded(false);
+  }
+}, true);
+
+// Estado inicial
+selectEmbeddedDashboard(activeEmbeddedDashboard);
 
 // Calculadora de custo de retrabalho
 const peopleInput = document.getElementById('peopleInput');
@@ -176,103 +220,42 @@ function showToast(message) {
   showToast.t = setTimeout(() => toast.classList.remove('show'), 1800);
 }
 
-// Canvas ambiente discreto — adaptado para desktop e mobile
+// Canvas ambiente discreto
 const canvas = document.getElementById('ambientCanvas');
 const ctx = canvas.getContext('2d');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const coarsePointer = window.matchMedia('(pointer: coarse)');
 let points = [];
-let ambientFrame = 0;
-let resizeTimer = 0;
-
 function resizeCanvas() {
-  if (!ctx || reducedMotion.matches) return;
-  const dpr = Math.min(window.devicePixelRatio || 1, innerWidth < 740 ? 1.25 : 1.75);
-  canvas.width = Math.max(1, Math.floor(innerWidth * dpr));
-  canvas.height = Math.max(1, Math.floor(innerHeight * dpr));
+  canvas.width = innerWidth * devicePixelRatio;
+  canvas.height = innerHeight * devicePixelRatio;
   canvas.style.width = `${innerWidth}px`;
   canvas.style.height = `${innerHeight}px`;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const density = innerWidth < 480 ? 55 : innerWidth < 900 ? 42 : 30;
-  const maxPoints = innerWidth < 740 ? 20 : innerWidth < 1200 ? 30 : 42;
-  points = Array.from({ length: Math.min(maxPoints, Math.max(10, Math.floor(innerWidth / density))) }, () => ({
-    x: Math.random() * innerWidth,
-    y: Math.random() * innerHeight,
-    vx: (Math.random() - .5) * (coarsePointer.matches ? .10 : .16),
-    vy: (Math.random() - .5) * (coarsePointer.matches ? .10 : .16)
+  ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  points = Array.from({length: Math.min(42, Math.floor(innerWidth/30))}, () => ({
+    x: Math.random()*innerWidth,
+    y: Math.random()*innerHeight,
+    vx:(Math.random()-.5)*.16,
+    vy:(Math.random()-.5)*.16
   }));
 }
-
 function drawAmbient() {
-  if (!ctx || reducedMotion.matches || document.hidden) {
-    ambientFrame = 0;
-    return;
-  }
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  ctx.clearRect(0,0,innerWidth,innerHeight);
   ctx.fillStyle = '#0fa3a0';
   points.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0 || p.x > innerWidth) p.vx *= -1;
-    if (p.y < 0 || p.y > innerHeight) p.vy *= -1;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, innerWidth < 740 ? .9 : 1.2, 0, Math.PI * 2);
-    ctx.fill();
+    p.x += p.vx; p.y += p.vy;
+    if (p.x<0||p.x>innerWidth) p.vx *= -1;
+    if (p.y<0||p.y>innerHeight) p.vy *= -1;
+    ctx.beginPath(); ctx.arc(p.x,p.y,1.2,0,Math.PI*2); ctx.fill();
   });
-
-  const connectDistance = innerWidth < 740 ? 82 : 110;
   ctx.strokeStyle = 'rgba(15,163,160,.18)';
-  for (let i = 0; i < points.length; i++) {
-    for (let j = i + 1; j < points.length; j++) {
-      const dx = points[i].x - points[j].x;
-      const dy = points[i].y - points[j].y;
-      const d = Math.hypot(dx, dy);
-      if (d < connectDistance) {
-        ctx.globalAlpha = 1 - d / connectDistance;
-        ctx.beginPath();
-        ctx.moveTo(points[i].x, points[i].y);
-        ctx.lineTo(points[j].x, points[j].y);
-        ctx.stroke();
-      }
-    }
+  for(let i=0;i<points.length;i++) for(let j=i+1;j<points.length;j++){
+    const dx=points[i].x-points[j].x, dy=points[i].y-points[j].y, d=Math.hypot(dx,dy);
+    if(d<110){ctx.globalAlpha=1-d/110;ctx.beginPath();ctx.moveTo(points[i].x,points[i].y);ctx.lineTo(points[j].x,points[j].y);ctx.stroke();}
   }
-  ctx.globalAlpha = 1;
-  ambientFrame = requestAnimationFrame(drawAmbient);
+  ctx.globalAlpha=1;
+  requestAnimationFrame(drawAmbient);
 }
-
-function startAmbient() {
-  if (reducedMotion.matches || ambientFrame) return;
-  resizeCanvas();
-  ambientFrame = requestAnimationFrame(drawAmbient);
-}
-
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(resizeCanvas, 120);
-}, { passive: true });
-
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    if (ambientFrame) cancelAnimationFrame(ambientFrame);
-    ambientFrame = 0;
-  } else {
-    startAmbient();
-  }
-});
-
-reducedMotion.addEventListener?.('change', () => {
-  if (reducedMotion.matches) {
-    if (ambientFrame) cancelAnimationFrame(ambientFrame);
-    ambientFrame = 0;
-    canvas.style.display = 'none';
-  } else {
-    canvas.style.display = '';
-    startAmbient();
-  }
-});
-
-startAmbient();
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); drawAmbient();
 
 // Exibe a primeira seção sem aguardar o observer
 sections[0].querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
