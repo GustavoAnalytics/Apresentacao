@@ -120,7 +120,7 @@ const embeddedDashboards = {
     number: '05',
     title: 'Projetos',
     area: 'INCORPORAÇÃO & DESENVOLVIMENTO',
-    url: 'https://gustavoanalytics.github.io/dashboard-projetos-/',
+    url: 'https://gustavoanalytics.github.io/dashboard-projetos-incorporacao//',
     description: 'Pipeline de incorporação, aprovações, marcos, riscos e prontidão para lançamento.',
     question: 'Quais projetos estão prontos para avançar e quais podem comprometer o lançamento?',
     focus: 'Prazo + Gate',
